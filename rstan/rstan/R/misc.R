@@ -1656,10 +1656,11 @@ get_CXX <- function(CXX14 = TRUE) {
     ls_path <- Sys.which("ls")
     if (ls_path == "")
         return(NULL)
-
-    install_path <- dirname(dirname(ls_path))
+    arch <- substr(Sys.getenv("R_ARCH"), 3, 4)
+  
+    install_path <- dirname(dirname(dirname(ls_path)))
     file.path(install_path,
-              paste0('mingw_', Sys.getenv('WIN')), 'bin', 'g++')
+              paste0('mingw', arch), 'bin', 'g++')
 }
 
 is.sparc <- function() {
